@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Firebase environment variables
+.env.local
+
+# Firebase specific files
+.firebase/
+firebase-debug.log
+.runtimeconfig.json
