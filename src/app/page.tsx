@@ -60,6 +60,15 @@ export default function Home() {
   };
 
   return (
+    <div 
+    className={`grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)] ${darkMode ? 'dark bg-gray-900 text-white' : 'bg-white text-black'}`}
+    style={{
+      backgroundImage: "url('/biniyam.jpg')",
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat'
+    }}
+  >
     <div
       className={`grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)] ${
         darkMode ? "dark bg-gray-900 text-white" : "bg-white text-black"
@@ -69,12 +78,16 @@ export default function Home() {
         <Image
           src="/biniyam.jpg"
           alt="Biniyam"
-          width={720}
-          height={152}
+          width={360}
+          height={76}
           priority
-          className="w-full h-auto max-w-[720px]"
+          className="w-full h-auto "
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
+
+
+
+
 
         <ol className="list-inside text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
           <li className="mb-2">
@@ -125,6 +138,7 @@ export default function Home() {
         </div>
       </main>
       {/* Footer code remains unchanged */}
+    </div>
     </div>
   );
 }
