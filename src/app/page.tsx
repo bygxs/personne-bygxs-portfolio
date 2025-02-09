@@ -45,9 +45,12 @@ export default function Home() {
   const toggleAuthMode = () => setIsSignUp(!isSignUp);
 
   // Handle click outside of modal
+
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (isAuthModalOpen && event.target.classList.contains("modal-overlay")) {
+    const handleClickOutside = (event: MouseEvent) => {
+      // Specify the type here
+      const target = event.target as HTMLElement; // Cast to HTMLElement
+      if (isAuthModalOpen && target.classList.contains("modal-overlay")) {
         closeAuthModal();
       }
     };
@@ -60,7 +63,7 @@ export default function Home() {
 
   // Handle escape key press
   useEffect(() => {
-    const handleEscapeKey = (event) => {
+    const handleEscapeKey = (event: KeyboardEvent) => {
       if (event.key === "Escape" && isAuthModalOpen) {
         closeAuthModal();
       }
