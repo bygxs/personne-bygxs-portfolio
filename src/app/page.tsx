@@ -78,25 +78,18 @@ export default function Home() {
   const menuItems = {
     Trends: ["Gen Z", "Boomer", "Millennial", "Gen X"],
     Styles: [" ", " "],
-    Care: [ "BuJo-bullet journaling","Hair Care", "Scalp Care", "Product Recommendations"],
-    Products: ["Shampoos", "Conditioners", "Styling Products", "Tools"],
+    Care: [
+      "BuJo-bullet journaling",
+      "Hair Care",
+      "Scalp Care",
+      
+    ],
+    Products: ["Shampoos", "Conditioners", "Styling Products"],
     Bookings: ["Book Appointment", "View Schedule", "Manage Bookings"],
   };
 
-  const womenStyles = [
-    "Long Layers",
-    "Bob Cut",
-    "Ponytail",
-    "Braided Updo",
-    "Beach Waves",
-  ];
-  const menStyles = [
-    "Crew Cut",
-    "Undercut",
-    "Quiff",
-    "Buzz Cut",
-    "Textured Crop",
-  ];
+  const womenStyles = ["Bob Cut", "Ponytail", "Beach Waves"];
+  const menStyles = ["Crew Cut", "Buzz Cut"];
 
   return (
     <div
