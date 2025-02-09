@@ -1,144 +1,161 @@
 "use client";
-import Image from "next/image";
 import { useState, useEffect } from "react";
-import { auth } from "@/lib/firebase";
-import {
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-} from "firebase/auth";
+import Head from "next/head";
+import Link from "next/link";
+import AuthModal from "@/components/AuthModal"; // Import the AuthModal
+import Booking from "@/components/Booking";
+import FeaturedHairdressers from "@/components/FeaturedHairdressers";
+import FeaturedHairstyles from "@/components/FeaturedHairstyles";
+import Hero from "@/components/Hero";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import MainContent from "@/components/MainContent";
+import HamburgerMenu from "@/components/HamburgerMenu";
+import HorizontalNav from "@/components/HorizontalNav";
 
 export default function Home() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [darkMode, setDarkMode] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isOverlayVisible, setIsOverlayVisible] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [hoveredMenu, setHoveredMenu] = useState(null);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(false);
 
-  // Effect to set initial dark mode based on user's preference
   useEffect(() => {
-    if (
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-    ) {
-      setDarkMode(true);
-    }
+    setIsDarkMode(window.matchMedia("(prefers-color-scheme: dark)").matches);
   }, []);
 
-  // Function to toggle dark mode
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+    setIsOverlayVisible(!isOverlayVisible);
   };
 
-  // Function to handle user sign up
-  const handleSignUp = async () => {
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      console.log("User signed up:", userCredential.user);
-      // TODO: Add post-signup logic (e.g., redirect, update UI)
-    } catch (error) {
-      console.error("Error signing up:", error);
-      // TODO: Handle error (e.g., show error message to user)
-    }
+  const stylists = [
+    { name: "Jane Doe", role: "Color Specialist" },
+    { name: "John Smith", role: "Cutting Expert" },
+  ];
+
+  const styles = [
+    { name: "Beachy Waves", file: "beach-wave.jpg" },
+    { name: "Sleek Bob", file: "sleek-bob.jpg" },
+  ];
+
+  const handleAuthClick = () => setIsAuthModalOpen(true);
+  const closeAuthModal = () => setIsAuthModalOpen(false);
+  const toggleAuthMode = () => setIsSignUp(!isSignUp);
+
+  // Handle click outside of modal
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isAuthModalOpen && event.target.classList.contains("modal-overlay")) {
+        closeAuthModal();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isAuthModalOpen]);
+
+  // Handle escape key press
+  useEffect(() => {
+    const handleEscapeKey = (event) => {
+      if (event.key === "Escape" && isAuthModalOpen) {
+        closeAuthModal();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscapeKey);
+    return () => {
+      document.removeEventListener("keydown", handleEscapeKey);
+    };
+  }, [isAuthModalOpen]);
+
+  const menuItems = {
+    Trends: ["Gen Z", "Boomer", "Millennial", "Gen X"],
+    Styles: [" ", " "],
+    Care: ["Hair Care", "Scalp Care", "Product Recommendations"],
+    Products: ["Shampoos", "Conditioners", "Styling Products", "Tools"],
+    Bookings: ["Book Appointment", "View Schedule", "Manage Bookings"],
   };
 
-  // Function to handle user sign in
-  const handleSignIn = async () => {
-    try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      console.log("User signed in:", userCredential.user);
-      // TODO: Add post-signin logic (e.g., redirect, update UI)
-    } catch (error) {
-      console.error("Error signing in:", error);
-      // TODO: Handle error (e.g., show error message to user)
-    }
-  };
+  const womenStyles = [
+    "Long Layers",
+    "Bob Cut",
+    "Ponytail",
+    "Braided Updo",
+    "Beach Waves",
+  ];
+  const menStyles = [
+    "Crew Cut",
+    "Undercut",
+    "Quiff",
+    "Buzz Cut",
+    "Textured Crop",
+  ];
 
   return (
-    <div 
-    className={`grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)] ${darkMode ? 'dark bg-gray-900 text-white' : 'bg-white text-black'}`}
-    style={{
-      backgroundImage: "url('/biniyam.jpg')",
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat'
-    }}
-  >
     <div
-      className={`grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)] ${
-        darkMode ? "dark bg-gray-900 text-white" : "bg-white text-black"
+      className={`min-h-screen ${
+        isDarkMode ? "bg-gray-900 text-gray-100" : "bg-gray-50 text-gray-900"
       }`}
     >
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          src="/biniyam.jpg"
-          alt="Biniyam"
-          width={360}
-          height={76}
-          priority
-          className="w-full h-auto "
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+      <Head>
+        <title>Hair Hub</title>
+        <meta name="description" content="Your go-to hair resource" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      {/* Header */}
+      <Header
+        isDarkMode={isDarkMode}
+        toggleMenu={toggleMenu}
+        handleAuthClick={handleAuthClick}
+      />
+
+      {/* Sliding Menu */}
+      {isOverlayVisible && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-40"
+          onClick={toggleMenu}
+        ></div>
+      )}
+
+      <HamburgerMenu
+        isDarkMode={isDarkMode}
+        isMenuOpen={isMenuOpen}
+        toggleMenu={toggleMenu}
+      />
+
+      {/* Horizontal Navigation with Hover Submenus */}
+      <HorizontalNav
+        isDarkMode={isDarkMode}
+        menuItems={menuItems}
+        womenStyles={womenStyles}
+        menStyles={menStyles}
+      />
+
+      {/* Main Content */}
+      <MainContent
+        isDarkMode={isDarkMode}
+        styles={styles}
+        stylists={stylists}
+      />
+
+      {/* Footer */}
+      <Footer isDarkMode={isDarkMode} />
+
+      {/* Auth Modal */}
+      {isAuthModalOpen && (
+        <AuthModal
+          isAuthModalOpen={isAuthModalOpen}
+          closeAuthModal={closeAuthModal}
+          isSignUp={isSignUp}
+          toggleAuthMode={toggleAuthMode}
+          isDarkMode={isDarkMode}
         />
-
-
-
-
-
-        <ol className="list-inside text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Coming soon ...{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              so be it
-            </code>
-          </li>
-          <li>
-            It is some project only a beginner can dive in. Folly optimism
-            daredevil.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center">
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="border rounded p-2 dark:bg-gray-800 dark:text-white"
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="border rounded p-2 dark:bg-gray-800 dark:text-white"
-          />
-          <button
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            onClick={handleSignUp}
-          >
-            Sign Up
-          </button>
-          <button
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            onClick={handleSignIn}
-          >
-            Sign In
-          </button>
-          <button
-            onClick={toggleDarkMode}
-            className="p-2 rounded-full bg-gray-200 dark:bg-gray-700"
-          >
-            {darkMode ? "☀️" : "🌙"}
-          </button>
-        </div>
-      </main>
-      {/* Footer code remains unchanged */}
-    </div>
+      )}
     </div>
   );
 }
