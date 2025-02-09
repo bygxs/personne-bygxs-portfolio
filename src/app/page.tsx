@@ -78,7 +78,7 @@ export default function Home() {
   const menuItems = {
     Trends: ["Gen Z", "Boomer", "Millennial", "Gen X"],
     Styles: [" ", " "],
-    Care: ["Hair Care", "Scalp Care", "Product Recommendations"],
+    Care: [ "BuJo-bullet journaling","Hair Care", "Scalp Care", "Product Recommendations"],
     Products: ["Shampoos", "Conditioners", "Styling Products", "Tools"],
     Bookings: ["Book Appointment", "View Schedule", "Manage Bookings"],
   };
