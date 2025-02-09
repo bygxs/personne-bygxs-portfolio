@@ -14,7 +14,7 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleMenu, handleAuthClick
       <div className="text-2xl cursor-pointer" onClick={toggleMenu}>
         ☰
       </div>
-      <div className="text-2xl font-bold text-purple-600"> B   Y   G   X   S   </div>
+      <div className="text-2xl font-bold text-purple-600"> B   Y   G   X   S </div>
       <div className="text-2xl cursor-pointer" onClick={handleAuthClick}>
         👤
       </div>
