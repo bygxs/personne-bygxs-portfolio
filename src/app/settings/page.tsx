@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "../../context/AuthContext";
 import { db } from "../../lib/firebase";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import AuthNav from "../components/AuthNav";
+import AuthNav from "@/components/AuthNav";
 
 export default function Settings() {
   const { user, loading } = useAuth();

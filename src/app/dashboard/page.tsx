@@ -1,12 +1,13 @@
 // src/app/dashboard/page.tsx
-import { useState, useEffect } from 'react';
-import { getFirestore, collection, query, getDocs } from 'firebase/firestore';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { useRouter } from 'next/navigation';
+"use client";
+import { useState, useEffect } from "react";
+import { getFirestore, collection, query, getDocs } from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useRouter } from "next/navigation";
 
 interface Activity {
   id: string;
-  type: string;  // Just the type for now
+  type: string; // Just the type for now
   // Add other fields as you need them
 }
 
@@ -22,7 +23,7 @@ export default function Dashboard() {
       if (currentUser) {
         fetchData(currentUser.uid);
       } else {
-        router.push('/signin');
+        router.push("/signin");
       }
     });
     return () => unsubscribe();
@@ -31,7 +32,7 @@ export default function Dashboard() {
   const fetchData = async (userId: string) => {
     try {
       const db = getFirestore();
-      const q = query(collection(db, 'users', userId, 'activity')); // ***REPLACE with your path***
+      const q = query(collection(db, "users", userId, "activity")); // ***REPLACE with your path***
       const querySnapshot = await getDocs(q);
       const data = querySnapshot.docs.map((doc) => ({
         id: doc.id,
@@ -45,8 +46,8 @@ export default function Dashboard() {
     }
   };
 
-
-  if (!activities) { // Display a simple message while loading
+  if (!activities) {
+    // Display a simple message while loading
     return <div>Loading...</div>;
   }
 

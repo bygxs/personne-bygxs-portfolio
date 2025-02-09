@@ -1,3 +1,4 @@
+"use state";
 import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
 import { signOut } from "firebase/auth";
