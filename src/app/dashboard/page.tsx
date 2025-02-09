@@ -1,3 +1,5 @@
+//src/app/dashboard/page.ts
+
 "use client";
 import { useState, useEffect } from "react";
 import { getFirestore, collection, query, getDocs } from "firebase/firestore";
