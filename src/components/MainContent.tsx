@@ -2,8 +2,8 @@
 
 import React from "react";
 import Hero from "./Hero";
-import FeaturedHairstyles from "./FeaturedHairstyles";
-import FeaturedHairdressers from "./FeaturedHairdressers";
+import FeaturedHairstyles from "./FeaturedArt";
+import FeaturedHairdressers from "./Featured";
 import Booking from "./Booking";
 
 interface MainContentProps {

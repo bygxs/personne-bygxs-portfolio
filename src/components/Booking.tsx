@@ -23,9 +23,9 @@ const Booking: React.FC<BookingProps> = ({ isDarkMode }) => {
               isDarkMode ? "bg-gray-700 text-white" : "bg-white text-black"
             }`}
           >
-            <option>Haircut</option>
-            <option>Coloring</option>
-            <option>Styling</option>
+            <option>Art</option>
+            <option>Design</option>
+            <option>Code</option>
           </select>
         </div>
         <div>

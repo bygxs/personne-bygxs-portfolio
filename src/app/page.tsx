@@ -4,8 +4,8 @@ import Head from "next/head";
 import Link from "next/link";
 import AuthModal from "@/components/AuthModal"; // Import the AuthModal
 import Booking from "@/components/Booking";
-import FeaturedHairdressers from "@/components/FeaturedHairdressers";
-import FeaturedHairstyles from "@/components/FeaturedHairstyles";
+import FeaturedHairdressers from "@/components/Featured";
+import FeaturedHairstyles from "@/components/FeaturedArt";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
@@ -36,8 +36,8 @@ export default function Home() {
   ];
 
   const styles = [
-    { name: "Beachy Waves", file: "beach-wave.jpg" },
-    { name: "Sleek Bob", file: "sleek-bob.jpg" },
+    { name: "Hokusai Waves", file: "beach-wave.jpg" },
+    { name: "Marley Bob", file: "sleek-bob.jpg" },
   ];
 
   const handleAuthClick = () => setIsAuthModalOpen(true);
@@ -78,18 +78,13 @@ export default function Home() {
   const menuItems = {
     Trends: ["Gen Z", "Boomer", "Millennial", "Gen X"],
     Styles: [" ", " "],
-    Care: [
-      "BuJo-bullet journaling",
-      "Hair Care",
-      "Scalp Care",
-      
-    ],
-    Products: ["Shampoos", "Conditioners", "Styling Products"],
+    Write: ["BuJo-bullet journaling", "Self Care", "Soul Rebel"],
+    Movements: ["Expression", "Impression", "Real Natural", "Abstract"],
     Bookings: ["Book Appointment", "View Schedule", "Manage Bookings"],
   };
 
-  const womenStyles = ["Bob Cut", "Ponytail", "Beach Waves"];
-  const menStyles = ["Crew Cut", "Buzz Cut"];
+  const womenStyles = ["Wood Cut", "Carvings", "Sclupture"];
+  const menStyles = ["Painting", "Mixed media"];
 
   return (
     <div
@@ -98,8 +93,8 @@ export default function Home() {
       }`}
     >
       <Head>
-        <title>Hair Hub</title>
-        <meta name="description" content="Your go-to hair resource" />
+        <title> BYGXS</title>
+        <meta name="description" content="Personne" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

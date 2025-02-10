@@ -25,7 +25,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
       <button onClick={toggleMenu} className="absolute top-4 right-4 text-2xl">
         &times;
       </button>
-      {["Profile", "Bookings", "Care", "Products", "Settings"].map((item) => (
+      {["Profile", "Bookings", "Artworks", "Self Care", "Settings"].map((item) => (
         <Link
           key={item}
           href={`/${item.toLowerCase()}`}
@@ -39,29 +39,3 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
 };
 
 export default HamburgerMenu;
-
-/* 
-old code form app/page.tsx
-   {/*   <nav
-        className={`fixed top-0 left-0 bottom-0 w-64 ${
-          isDarkMode ? "bg-gray-800" : "bg-white"
-        } p-4 transition-transform duration-300 ease-in-out z-50 ${
-          isMenuOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
-      >
-     <button
-          onClick={toggleMenu}
-          className="absolute top-4 right-4 text-2xl"
-        >
-          &times;
-        </button>
-        {["Profile", "Bookings", "Care", "Products", "Settings"].map((item) => (
-          <Link
-            key={item}
-            href={`/${item.toLowerCase()}`}
-            className="block py-2 hover:text-purple-600"
-          >
-            {item}
-          </Link>
-        ))}
-      </nav> */
